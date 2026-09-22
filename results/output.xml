@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.5 (Python 3.14.7 on win32)" generated="2026-09-22T14:04:54.305695" rpa="false" schemaversion="5">
+<suite id="s1" name="RobotFrameworkCourse" source="C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse">
+<suite id="s1-s1" name="Web Testing" source="C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse\Web Testing">
+<suite id="s1-s1-s1" name="Amazon Tests" source="C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse\Web Testing\amazon_tests.robot">
+<test id="s1-s1-s1-t1" name="Caso de Teste 01 - Acesso ao menu &quot;Eletrônicos&quot;" line="8">
+<kw name="Abrir o navegador" owner="amazon_resources" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-09-22T14:04:54.753507" level="INFO">Opening browser 'chrome' to base url 'http://www.amazon.com.br'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-09-22T14:04:54.753101" elapsed="4.451126"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-09-22T14:04:59.204698" elapsed="0.043655"/>
+</kw>
+<status status="PASS" start="2026-09-22T14:04:54.752110" elapsed="4.496630"/>
+</kw>
+<kw name="Acessar a home page do site Amazon.com.br" owner="amazon_resources">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-09-22T14:04:59.250941" level="INFO">Opening url 'http://www.amazon.com.br'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-09-22T14:04:59.250645" elapsed="0.348168"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>locator=${MENU_ELETRONICOS}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-09-22T14:04:59.599261" elapsed="1.899684"/>
+</kw>
+<status status="PASS" start="2026-09-22T14:04:59.249847" elapsed="2.249776"/>
+</kw>
+<kw name="Entrar no menu &quot;Eletrônicos&quot;" owner="amazon_resources">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-09-22T14:05:01.504292" level="INFO">Clicking element '//a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&amp;node=16209062011&amp;ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]'.</msg>
+<arg>locator=${MENU_ELETRONICOS}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-09-22T14:05:01.503049" elapsed="3.673595"/>
+</kw>
+<status status="PASS" start="2026-09-22T14:05:01.500780" elapsed="3.676391"/>
+</kw>
+<kw name="Verificar se aparece a frase &quot;Eletrônicos e Tecnologia&quot;" owner="amazon_resources">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>text=${HEADER ELETRONICOS_TEXT}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-09-22T14:05:05.178623" elapsed="0.047112"/>
+</kw>
+<status status="PASS" start="2026-09-22T14:05:05.177919" elapsed="0.048044"/>
+</kw>
+<kw name="Fechar o navegador" owner="amazon_resources" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-09-22T14:05:05.227023" elapsed="2.355391"/>
+</kw>
+<status status="PASS" start="2026-09-22T14:05:05.226564" elapsed="2.356341"/>
+</kw>
+<doc>Esse teste verifica o menu eletrônicos do site da Amazon.com.br
+e verifica a categoria Computadores e Informática</doc>
+<tag>categorias</tag>
+<tag>menus</tag>
+<status status="PASS" start="2026-09-22T14:04:54.738102" elapsed="12.845253"/>
+</test>
+<doc>Essa suíte testa o site da Amazon.com.br</doc>
+<status status="PASS" start="2026-09-22T14:04:54.366570" elapsed="13.227905"/>
+</suite>
+<status status="PASS" start="2026-09-22T14:04:54.355701" elapsed="13.250005"/>
+</suite>
+<status status="PASS" start="2026-09-22T14:04:54.313882" elapsed="13.295840"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">categorias</stat>
+<stat pass="1" fail="0" skip="0">menus</stat>
+</tag>
+<suite>
+<stat name="RobotFrameworkCourse" id="s1" pass="1" fail="0" skip="0">RobotFrameworkCourse</stat>
+<stat name="Web Testing" id="s1-s1" pass="1" fail="0" skip="0">RobotFrameworkCourse.Web Testing</stat>
+<stat name="Amazon Tests" id="s1-s1-s1" pass="1" fail="0" skip="0">RobotFrameworkCourse.Web Testing.Amazon Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
