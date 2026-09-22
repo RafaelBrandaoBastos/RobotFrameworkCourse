@@ -22,20 +22,23 @@ Successfully installed robotframework-7.4.2
 $ robot --version
 Robot Framework 7.4.2 (Python 3.12.0 on darwin)
 ```
-## SeleniumLibrary
+## Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
+https://github.com/robotframework/SeleniumLibrary
 ```pip install --upgrade robotframework-seleniumlibrary```
 
-### Pesquisar Keyworks
-<img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
-https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
+## Pesquisar Keyworks
+Acesse: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
-### Exemplo de implementção Open Browser
+<img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
+
+## Exemplo de implementção Open Browser
 ```robotframework
 *** Settings ***
 Documentation    Essa suíte testa o site da Amazon.com.br
 Resource         amazon_resources.robot
 Test Setup       Abrir o navegador
+Test Teardown    Fechar o navegador
 
 *** Test Cases ***
 Caso de Teste 01 - Acesso ao menu "Eletrônicos"
@@ -43,7 +46,7 @@ Caso de Teste 01 - Acesso ao menu "Eletrônicos"
     [Tags]    menus    categorias
     Acessar a home page do site Amazon.com.br
 ```
-```
+```robotframework
 *** Settings ***
 Library    SeleniumLibrary
 
@@ -53,8 +56,55 @@ ${URL}    https://www.amazon.com.br
 *** Keywords ***
 Abrir o navegador
     Open Browser    ${URL}    chrome
+
+Fechar o navegador
+	Close Browser
 ```
 
+## Procurando elementos na DOM
+<img width="2552" height="591" alt="image" src="https://github.com/user-attachments/assets/5a340ad6-de58-4756-9251-acdef3f038cb" />
+
+```robotframework
+*** Settings ***
+Documentation    Essa suíte testa o site da Amazon.com.br
+Resource         amazon_resources.robot
+Test Setup       Abrir o navegador
+
+*** Test Cases ***
+Caso de Teste 01 - Acesso ao menu "Eletrônicos"
+    [Documentation]    Esse teste verifica o menu eletrônicos do site
+    [Tags]    menus    categorias
+    Acessar a home page do site Amazon.com.br
+    Entrar no menu "Eletrônicos"
+    Verificar se aparece a frase "Eletrônicos e Tecnologia"
+```
+
+```robotframework
+*** Settings ***
+Library    SeleniumLibrary
+
+*** Variables ***
+${URL}    http://www.amazon.com.br
+${MENU_ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
+${HEADER ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
+${HEADER ELETRONICOS_TEXT}    Eletrônicos e Tecnologia
+
+*** Keywords ***
+Abrir o navegador
+	Open Browser    ${URL}    chrome
+	Maximize Browser Window
+
+
+Acessar a home page do site Amazon.com.br
+	Go To    ${URL}
+	Wait Until Element Is Visible    locator=${MENU_ELETRONICOS}
+
+Entrar no menu "Eletrônicos"
+	Click Element    locator=${MENU_ELETRONICOS}
+
+Verificar se aparece a frase "Eletrônicos e Tecnologia"
+	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
+```
 ## Dicas
 ### Lidar com captcha
 Então faça alguma dessas sugestões abaixo:
