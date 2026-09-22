@@ -1,9 +1,25 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+*** Variables ***
+${URL}    http://www.amazon.com.br
+${MENU_ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
+${HEADER ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
+${HEADER ELETRONICOS_TEXT}    Eletrônicos e Tecnologia
 *** Keywords ***
 Abrir o navegador
-    Open Browser    https://www.amazon.com.br    chrome
+	Open Browser    ${URL}    chrome
+	Maximize Browser Window
 
 Fechar o navegador
-    Close Browser
+	Close Browser
+
+Acessar a home page do site Amazon.com.br
+	Go To    ${URL}
+	Wait Until Element Is Visible    locator=${MENU_ELETRONICOS}
+
+Entrar no menu "Eletrônicos"
+	Click Element    locator=${MENU_ELETRONICOS}
+
+Verificar se aparece a frase "Eletrônicos e Tecnologia"
+	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
