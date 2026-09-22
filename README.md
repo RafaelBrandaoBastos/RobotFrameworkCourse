@@ -1,5 +1,7 @@
 # Guia do Rafa para Robot framework
-O Robot Framework é um framework de automação de código aberto para automação de testes e automação de processos robóticos (RPA). Ele conta com o suporte da Robot Framework Foundation e é amplamente utilizado na indústria.
+O Robot Framework é um framework de automação de código aberto para automação de testes e automação de processos robóticos (RPA)
+
+<img width="2560" height="1060" alt="image" src="https://github.com/user-attachments/assets/249de063-853a-4a26-8383-fd2445861014" />
 
 ## Pré requisitos
 Instalar o python: https://www.python.org/downloads/
@@ -28,7 +30,7 @@ Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em u
 <img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
 https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
-### Exemplo de implementção
+### Exemplo de implementção Open Browser
 ```robotframework
 *** Settings ***
 Documentation    Essa suíte testa o site da Amazon.com.br
