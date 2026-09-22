@@ -4,7 +4,8 @@ O Robot Framework é um framework de automação de código aberto para automaç
 ## Pré requisitos
 Instalar o python: https://www.python.org/downloads/
 
-<img width="511" height="83" alt="image" src="https://github.com/user-attachments/assets/45ee87af-b37f-4e59-b51d-43ebe8aba24e" />
+<img width="321" height="83" alt="656607709-45ee87af-b37f-4e59-b51d-43ebe8aba24e" src="https://github.com/user-attachments/assets/cba2d7d5-62be-4a7a-9781-fb6b81c99b76" />
+
 
 ## Instalação 
 ``` $ pip install robotframework
