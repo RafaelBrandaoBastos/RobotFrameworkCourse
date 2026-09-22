@@ -20,3 +20,9 @@ Successfully installed robotframework-7.4.2
 $ robot --version
 Robot Framework 7.4.2 (Python 3.12.0 on darwin)
 ```
+
+## Dicas
+### Lidar com captcha
+Então faça alguma dessas sugestões abaixo:
+- Antes de rodar o teste na sua máquina pelo Robot, abra o navegador manualmente como "Anônimo", navegue até a página da Amazon.com e resolva o captcha manualmente, depois volte e tente rodar o teste normalmente.
+- Se não resolver, adicione a keyword Sleep   25s no código logo após a keyword Go To para poder dar tempo de você digitar o código manualmente. Daí é só aguardar o tempo do Sleep acabar que a execução do teste continuará normalmente.
