@@ -20,6 +20,38 @@ Successfully installed robotframework-7.4.2
 $ robot --version
 Robot Framework 7.4.2 (Python 3.12.0 on darwin)
 ```
+## SeleniumLibrary
+Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
+```pip install --upgrade robotframework-seleniumlibrary```
+
+### Pesquisar Keyworks
+<img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
+https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
+
+### Exemplo de implementção
+```robotframework
+*** Settings ***
+Documentation    Essa suíte testa o site da Amazon.com.br
+Resource         amazon_resources.robot
+Test Setup       Abrir o navegador
+
+*** Test Cases ***
+Caso de Teste 01 - Acesso ao menu "Eletrônicos"
+    [Documentation]  Abringo amazon
+    [Tags]    menus    categorias
+    Acessar a home page do site Amazon.com.br
+```
+```
+*** Settings ***
+Library    SeleniumLibrary
+
+*** Variables ***
+${URL}    https://www.amazon.com.br
+
+*** Keywords ***
+Abrir o navegador
+    Open Browser    ${URL}    chrome
+```
 
 ## Dicas
 ### Lidar com captcha
