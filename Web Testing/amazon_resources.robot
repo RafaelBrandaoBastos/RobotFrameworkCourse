@@ -6,6 +6,7 @@ ${URL}    http://www.amazon.com.br
 ${MENU_ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
 ${HEADER ELETRONICOS}    //a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
 ${HEADER ELETRONICOS_TEXT}    Eletrônicos e Tecnologia
+
 *** Keywords ***
 Abrir o navegador
 	Open Browser    ${URL}    chrome
@@ -18,8 +19,14 @@ Acessar a home page do site Amazon.com.br
 	Go To    ${URL}
 	Wait Until Element Is Visible    locator=${MENU_ELETRONICOS}
 
-Entrar no menu "Eletrônicos"
+Entrar no menu Eletrônicos
 	Click Element    locator=${MENU_ELETRONICOS}
 
-Verificar se aparece a frase "Eletrônicos e Tecnologia"
+Verificar se aparece a frase Eletrônicos e Tecnologia
 	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
+
+Verificar se o titulo da página fica "${TITULO}"
+	Title Should Be    title=${TITULO}
+
+Verificar se aparece a categoria "${CATEGORIA}"
+	Element Should Be Visible   locator=//a[contains(.,'${CATEGORIA}')]
