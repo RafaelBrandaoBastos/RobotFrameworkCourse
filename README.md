@@ -49,9 +49,14 @@ Executa uma suíte específica pelo nome.
 robot -s "Amazon Tests" amazon_tests.robot
 ```
 
-Executa e os resultados em uma pasta chamada resultados.
+⚠️Executa e os resultados em uma pasta chamada resultados.
 ```
 robot -d resultados amazon_tests.robot
+```
+
+⚠️Alterar valor variáveis
+```
+robot -v PRODUTO:Xbox amazon_tests.robot
 ```
 
 ## 3 Instalação de Library
