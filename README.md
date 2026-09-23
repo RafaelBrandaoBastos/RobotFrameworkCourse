@@ -106,6 +106,10 @@ Verificar se aparece a frase "Eletrônicos e Tecnologia"
 	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
 ```
 ## 6 Dicas
+### 6.0 Testar apenas um suite de testes
+```
+robot -t "Caso de Teste 02 - Pesquisa de um Produto" amazon_tests.robot
+```
 
 ### 6.1 Lidar com captcha
 Então faça alguma dessas sugestões abaixo:
@@ -142,7 +146,7 @@ Fechar o navegador
     Capture Page Screenshot
 ```
 
-### 6.5 Usar barra de pesquisa
+### 6.5 Usar barra de pesquisa / Locator só com ID do componente
 ```robotframework
 *** Test Cases ***
 Caso de Teste 02 - Pesquisa de um Produto
