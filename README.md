@@ -49,7 +49,7 @@ Executa uma suíte específica pelo nome.
 robot -s "Amazon Tests" amazon_tests.robot
 ```
 
-Salva os resultados em uma pasta chamada resultados.
+Executa e os resultados em uma pasta chamada resultados.
 ```
 robot -d resultados amazon_tests.robot
 ```
