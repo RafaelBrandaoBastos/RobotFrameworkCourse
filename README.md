@@ -246,3 +246,113 @@ Uma subkeyword com retorno
     ${MENSAGEM}    Set Variable If    ${IDADE_USUARIO}<18    Não autorizado! O usuário ${NOME_USUARIO} é menor de idade!
     [Return]    ${MENSAGEM}
 ```
+
+### 8.9 Logs
+```robotframework
+*** Variables ***
+ 
+@{FRUTAS} Maçã Banana Laranja Uva
+ 
+ 
+*** Test Cases ***
+ 
+Exemplo de tipos de log
+Demonstrar logs
+ 
+ 
+*** Keywords ***
+ 
+Demonstrar logs
+ 
+Log To Console ===== LOG NO CONSOLE =====
+Log To Console Posso logar na saída do console
+ 
+Log To Console \n===== LOG PADRÃO =====
+Log Este é um log informativo padrão.
+ 
+Log To Console \n===== LOG POR NÍVEL =====
+Log Informação detalhada para depuração. TRACE
+Log Informação de desenvolvimento. DEBUG
+Log Informação geral. INFO
+Log Aviso importante. WARN
+Log Erro encontrado. ERROR
+ 
+Log To Console \n===== LOG MANY =====
+Log Many @{FRUTAS}
+ 
+Log To Console \n===== LOG DE ITENS ESPECÍFICOS =====
+Log Primeira fruta: ${FRUTAS}[0]
+Log Segunda fruta: ${FRUTAS}[1]
+Log Frutas selecionadas: ${FRUTAS}[0] - ${FRUTAS}[1]
+```
+
+### 8.10 Loops
+```robotframework
+*** Variables ***
+
+@{FRUTAS}    Maçã    Banana    Laranja
+${CONTADOR}    0
+
+
+*** Test Cases ***
+
+Exemplos de loops
+    Loop FOR IN
+    Loop FOR IN RANGE
+    Loop FOR IN ENUMERATE
+    Loop WHILE
+    Loop REPEAT KEYWORD
+
+
+*** Keywords ***
+
+Loop FOR IN
+
+    Log To Console    ===== FOR IN =====
+
+    FOR    ${FRUTA}    IN    @{FRUTAS}
+        Log    Fruta atual: ${FRUTA}
+    END
+
+
+Loop FOR IN RANGE
+
+    Log To Console    \n===== FOR IN RANGE =====
+
+    FOR    ${NUMERO}    IN RANGE    5
+        Log    Número: ${NUMERO}
+    END
+
+
+Loop FOR IN ENUMERATE
+
+    Log To Console    \n===== FOR IN ENUMERATE =====
+
+    FOR    ${INDICE}    ${FRUTA}    IN ENUMERATE    @{FRUTAS}
+        Log    Índice: ${INDICE} | Fruta: ${FRUTA}
+    END
+
+
+Loop WHILE
+
+    Log To Console    \n===== WHILE =====
+
+    ${CONTADOR}=    Set Variable    0
+
+    WHILE    ${CONTADOR} < 5
+        Log    Contador: ${CONTADOR}
+        ${CONTADOR}=    Evaluate    ${CONTADOR} + 1
+    END
+
+
+Loop REPEAT KEYWORD
+
+    Log To Console    \n===== REPEAT KEYWORD =====
+
+    Repeat Keyword    3 times    Keyword De Exemplo
+
+
+Keyword De Exemplo
+    Log    Executando keyword...
+
+```
