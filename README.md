@@ -59,6 +59,26 @@ robot -d resultados amazon_tests.robot
 robot -v PRODUTO:Xbox amazon_tests.robot
 ```
 
+## 3 Tipos de variáveis
+```robotframework
+*** Variable ***
+# Simples
+${SIMPLES} Vamos ver os tipos de variáveis no robot!
+# Tipo Lista
+@{FRUTAS} morango banana maçã uva abacaxi
+# Tipo Dicionário
+&{PESSOA} nome=May Fernandes email=mayfernandes@exemplo.com.br idade=28
+```
+```robotframework
+*** Keywords ***
+Uma keyword qualquer 01
+# Simples
+Log ${SIMPLES}
+# Lista
+Log Essa tem que ser maça: ${FRUTAS[2]} e essa tem que ser morango: ${FRUTAS[0]} 
+# Dicionário
+Log Nome: ${PESSOA.nome} e email: ${PESSOA.email}
+```
 ## 3 Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
 https://github.com/robotframework/SeleniumLibrary
