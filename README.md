@@ -3,13 +3,13 @@ O Robot Framework é um framework de automação de código aberto para automaç
 
 <img width="2560" height="1060" alt="image" src="https://github.com/user-attachments/assets/249de063-853a-4a26-8383-fd2445861014" />
 
-## Pré requisitos
+## 1 Pré requisitos
 Instalar o python: https://www.python.org/downloads/
 
 <img width="321" height="83" alt="656607709-45ee87af-b37f-4e59-b51d-43ebe8aba24e" src="https://github.com/user-attachments/assets/cba2d7d5-62be-4a7a-9781-fb6b81c99b76" />
 
 
-## Instalação 
+## 2 Instalação 
 ``` $ pip install robotframework
 Collecting robotframework
   Downloading robotframework-7.4.2-py3-none-any.whl.metadata (7.6 kB)
@@ -22,17 +22,17 @@ Successfully installed robotframework-7.4.2
 $ robot --version
 Robot Framework 7.4.2 (Python 3.12.0 on darwin)
 ```
-## Instalação de Library
+## 3 Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
 https://github.com/robotframework/SeleniumLibrary
 ```pip install --upgrade robotframework-seleniumlibrary```
 
-### Pesquisar Keyworks
+### 3.1 Pesquisar Keyworks
 Acesse: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
 <img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
 
-## Exemplo de implementção Open Browser
+## 4 Exemplo de implementção Open Browser
 ```robotframework
 *** Settings ***
 Documentation    Essa suíte testa o site da Amazon.com.br
@@ -61,7 +61,7 @@ Fechar o navegador
 	Close Browser
 ```
 
-## Procurando elementos na DOM
+## 5 Procurando elementos na DOM
 <img width="2552" height="591" alt="image" src="https://github.com/user-attachments/assets/5a340ad6-de58-4756-9251-acdef3f038cb" />
 
 ```robotframework
@@ -105,14 +105,14 @@ Entrar no menu "Eletrônicos"
 Verificar se aparece a frase "Eletrônicos e Tecnologia"
 	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
 ```
-## Dicas
+## 6 Dicas
 
-### 1. Lidar com captcha
+### 6.1 Lidar com captcha
 Então faça alguma dessas sugestões abaixo:
 - Antes de rodar o teste na sua máquina pelo Robot, abra o navegador manualmente como "Anônimo", navegue até a página da Amazon.com e resolva o captcha manualmente, depois volte e tente rodar o teste normalmente.
 - Se não resolver, adicione a keyword Sleep   25s no código logo após a keyword Go To para poder dar tempo de você digitar o código manualmente. Daí é só aguardar o tempo do Sleep acabar que a execução do teste continuará normalmente.
 
-### 2. Maximizar o browser para aparecer
+### 6.2 Maximizar o browser para aparecer
 ```robotframework
 *** Keywords ***
 Abrir o navegador
@@ -120,7 +120,7 @@ Abrir o navegador
 	Maximize Browser Window
 ```
 
-### 3. Passar parametro
+### 6.3 Passar parametro
 ```robotframework
 *** Test Cases ***
 Caso de Teste 01 - Acesso ao menu "Eletrônicos"
@@ -130,4 +130,26 @@ Caso de Teste 01 - Acesso ao menu "Eletrônicos"
 *** Keywords ***
 Verificar se o titulo da página fica "${TITULO}"
 	Title Should Be    title=${TITULO}
+```
+### 6.4 Screenshots
+```robotframework
+*** Keywords ***
+Abrir o navegador
+	Open Browser    ${URL}    chrome
+	Maximize Browser Window
+
+Fechar o navegador
+    Capture Page Screenshot
+```
+
+### 6.5 Usar barra de pesquisa
+```robotframework
+*** Test Cases ***
+Caso de Teste 02 - Pesquisa de um Produto
+    Digitar o nome de produto "Xbox Series S" no campo de pesquisa
+```
+```robotframework
+*** Keywords ***
+Digitar o nome de produto "${NOME-DO-PRODUTO}" no campo de pesquisa
+	Input Text    locator=twotabsearchtextbox    text=${NOME-DO-PRODUTO}
 ```
