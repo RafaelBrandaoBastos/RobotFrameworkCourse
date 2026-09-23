@@ -27,7 +27,7 @@ Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em u
 https://github.com/robotframework/SeleniumLibrary
 ```pip install --upgrade robotframework-seleniumlibrary```
 
-## Pesquisar Keyworks
+### Pesquisar Keyworks
 Acesse: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
 <img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
@@ -118,4 +118,16 @@ Então faça alguma dessas sugestões abaixo:
 Abrir o navegador
 	Open Browser    ${URL}    chrome
 	Maximize Browser Window
+```
+
+### 3. Passar parametro
+```robotframework
+*** Test Cases ***
+Caso de Teste 01 - Acesso ao menu "Eletrônicos"
+    Verificar se o titulo da página fica "Eletrônicos e Tecnologia | Amazon.com.br"
+```
+```robotframework
+*** Keywords ***
+Verificar se o titulo da página fica "${TITULO}"
+	Title Should Be    title=${TITULO}
 ```
