@@ -1,97 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.5 (Python 3.14.7 on win32)" generated="2026-09-22T13:12:07.756132" rpa="false" schemaversion="5">
+<robot generator="Robot 7.5 (Python 3.14.7 on win32)" generated="2026-09-23T12:01:11.161258" rpa="false" schemaversion="5">
 <suite id="s1" name="Amazon Tests" source="C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse\Web Testing\amazon_tests.robot">
-<test id="s1-t1" name="Caso de Teste 01 - Acesso ao menu &quot;Eletrônicos&quot;" line="8">
+<test id="s1-t1" name="Caso de Teste 02 - Pesquisa de um Produto" line="18">
 <kw name="Abrir o navegador" owner="amazon_resources" type="SETUP">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2026-09-22T13:12:08.102605" level="INFO">Opening browser 'chrome' to base url 'https://www.amazon.com.br'.</msg>
-<arg>https://www.amazon.com.br</arg>
+<msg time="2026-09-23T12:01:11.554292" level="INFO">Opening browser 'chrome' to base url 'http://www.amazon.com.br'.</msg>
+<arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2026-09-22T13:12:08.102295" elapsed="2.575262"/>
+<status status="PASS" start="2026-09-23T12:01:11.554057" elapsed="2.010114"/>
 </kw>
-<status status="PASS" start="2026-09-22T13:12:08.101512" elapsed="2.576759"/>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-09-23T12:01:13.564822" elapsed="0.037858"/>
 </kw>
-<kw name="Acessar a home page do site Amazon.com.br">
-<msg time="2026-09-22T13:12:10.684614" level="FAIL">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</msg>
-<status status="FAIL" start="2026-09-22T13:12:10.684311" elapsed="0.000545">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</status>
+<status status="PASS" start="2026-09-23T12:01:11.553279" elapsed="2.049669"/>
 </kw>
-<kw name="Entrar no menu &quot;Eletrônicos&quot;">
-<status status="NOT RUN" start="2026-09-22T13:12:10.686549" elapsed="0.000155"/>
+<kw name="Acessar a home page do site Amazon.com.br" owner="amazon_resources">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-09-23T12:01:13.604869" level="INFO">Opening url 'http://www.amazon.com.br'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-09-23T12:01:13.604617" elapsed="0.361169"/>
 </kw>
-<kw name="Verificar se o titulo da página fica &quot;Eletrônicos e Tecnologia | Amazon.com.br&quot;">
-<status status="NOT RUN" start="2026-09-22T13:12:10.687619" elapsed="0.000081"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>locator=${MENU_ELETRONICOS}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-09-23T12:01:13.966281" elapsed="1.715831"/>
 </kw>
-<kw name="Verificar se aparece a frase &quot;Eletrônicos e Tecnologia&quot;">
-<status status="NOT RUN" start="2026-09-22T13:12:10.688335" elapsed="0.000066"/>
+<status status="PASS" start="2026-09-23T12:01:13.604031" elapsed="2.078490"/>
 </kw>
-<kw name="Verificar se aparece a categoria &quot;Computadores e Informática&quot;">
-<status status="NOT RUN" start="2026-09-22T13:12:10.688818" elapsed="0.000063"/>
+<kw name="Digitar o nome de produto &quot;Xbox Series S&quot; no campo de pesquisa" owner="amazon_resources" source_name="Digitar o nome de produto &quot;${NOME-DO-PRODUTO}&quot; no campo de pesquisa">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-09-23T12:01:15.684945" level="INFO">Typing text 'Xbox Series S' into text field 'twotabsearchtextbox'.</msg>
+<arg>locator=twotabsearchtextbox</arg>
+<arg>text=${NOME-DO-PRODUTO}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-09-23T12:01:15.684193" elapsed="0.619548"/>
 </kw>
-<kw name="Fechar o navegador" owner="amazon_resources" type="TEARDOWN">
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-09-22T13:12:10.691032" elapsed="2.260116"/>
+<status status="PASS" start="2026-09-23T12:01:15.683464" elapsed="0.620838"/>
 </kw>
-<status status="PASS" start="2026-09-22T13:12:10.690077" elapsed="2.261370"/>
+<kw name="Clicar no botão de pesquisa" owner="amazon_resources">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-09-23T12:01:16.307148" level="INFO">Clicking button 'nav-search-submit-button'.</msg>
+<arg>locator=nav-search-submit-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-09-23T12:01:16.306219" elapsed="2.730046"/>
 </kw>
-<doc>Esse teste verifica o menu eletrônicos do site da Amazon.com.br
-e verifica a categoria Computadores e Informática</doc>
-<tag>categorias</tag>
-<tag>menus</tag>
-<status status="FAIL" start="2026-09-22T13:12:08.100775" elapsed="4.851199">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</status>
-</test>
-<test id="s1-t2" name="Caso de Teste 02 - Pesquisa de um Produto" line="18">
-<kw name="Abrir o navegador" owner="amazon_resources" type="SETUP">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2026-09-22T13:12:12.954151" level="INFO">Opening browser 'chrome' to base url 'https://www.amazon.com.br'.</msg>
-<arg>https://www.amazon.com.br</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2026-09-22T13:12:12.953958" elapsed="2.274918"/>
-</kw>
-<status status="PASS" start="2026-09-22T13:12:12.953608" elapsed="2.275843"/>
-</kw>
-<kw name="Acessar a home page do site Amazon.com.br">
-<msg time="2026-09-22T13:12:15.232715" level="FAIL">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</msg>
-<status status="FAIL" start="2026-09-22T13:12:15.232619" elapsed="0.000158">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</status>
-</kw>
-<kw name="Digitar o nome de produto &quot;Xbox Series S&quot; no campo de pesquisa">
-<status status="NOT RUN" start="2026-09-22T13:12:15.233127" elapsed="0.000043"/>
-</kw>
-<kw name="Clicar no botão de pesquisa">
-<status status="NOT RUN" start="2026-09-22T13:12:15.233431" elapsed="0.000054"/>
-</kw>
-<kw name="Verificar o resultado da pesquisa se está listando o produto pesquisado">
-<status status="NOT RUN" start="2026-09-22T13:12:15.233829" elapsed="0.000046"/>
+<status status="PASS" start="2026-09-23T12:01:16.305265" elapsed="2.731319"/>
 </kw>
 <kw name="Fechar o navegador" owner="amazon_resources" type="TEARDOWN">
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-09-23T12:01:19.403937" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-09-23T12:01:19.037888" elapsed="0.366223"/>
+</kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-09-22T13:12:15.235289" elapsed="2.214435"/>
+<status status="PASS" start="2026-09-23T12:01:19.404786" elapsed="2.369563"/>
 </kw>
-<status status="PASS" start="2026-09-22T13:12:15.234709" elapsed="2.215433"/>
+<status status="PASS" start="2026-09-23T12:01:19.037422" elapsed="2.737043"/>
 </kw>
 <doc>Esse teste verifica a busca de um produto</doc>
 <tag>busca_produtos</tag>
 <tag>lista_busca</tag>
-<status status="FAIL" start="2026-09-22T13:12:12.953099" elapsed="4.497567">No keyword with name 'Acessar a home page do site Amazon.com.br' found.</status>
+<status status="PASS" start="2026-09-23T12:01:11.552288" elapsed="10.222437"/>
 </test>
 <doc>Essa suíte testa o site da Amazon.com.br</doc>
-<status status="FAIL" start="2026-09-22T13:12:07.757742" elapsed="9.694412"/>
+<status status="PASS" start="2026-09-23T12:01:11.163089" elapsed="10.612504"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="2" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">busca_produtos</stat>
-<stat pass="0" fail="1" skip="0">categorias</stat>
-<stat pass="0" fail="1" skip="0">lista_busca</stat>
-<stat pass="0" fail="1" skip="0">menus</stat>
+<stat pass="1" fail="0" skip="0">busca_produtos</stat>
+<stat pass="1" fail="0" skip="0">lista_busca</stat>
 </tag>
 <suite>
-<stat name="Amazon Tests" id="s1" pass="0" fail="2" skip="0">Amazon Tests</stat>
+<stat name="Amazon Tests" id="s1" pass="1" fail="0" skip="0">Amazon Tests</stat>
 </suite>
 </statistics>
 <errors>

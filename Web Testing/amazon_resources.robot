@@ -13,6 +13,7 @@ Abrir o navegador
 	Maximize Browser Window
 
 Fechar o navegador
+    Capture Page Screenshot
 	Close Browser
 
 Acessar a home page do site Amazon.com.br
@@ -30,3 +31,12 @@ Verificar se o titulo da página fica "${TITULO}"
 
 Verificar se aparece a categoria "${CATEGORIA}"
 	Element Should Be Visible   locator=//a[contains(.,'${CATEGORIA}')]
+
+Digitar o nome de produto "${NOME-DO-PRODUTO}" no campo de pesquisa
+	Input Text    locator=twotabsearchtextbox    text=${NOME-DO-PRODUTO}
+
+Clicar no botão de pesquisa
+	Click Button    locator=nav-search-submit-button
+
+Verificar o resultado da pesquisa se está listando o produto "${PRODUTO}"
+	Wait Until Element Is Visible   locator=//span[contains(.,'${PRODUTO}')]
