@@ -59,7 +59,7 @@ robot -d resultados amazon_tests.robot
 robot -v PRODUTO:Xbox amazon_tests.robot
 ```
 
-## 3 Tipos de variáveis
+## 4 Tipos de variáveis
 ```robotframework
 *** Variable ***
 # Simples
@@ -79,17 +79,17 @@ Log Essa tem que ser maça: ${FRUTAS[2]} e essa tem que ser morango: ${FRUTAS[0]
 # Dicionário
 Log Nome: ${PESSOA.nome} e email: ${PESSOA.email}
 ```
-## 3 Instalação de Library
+## 5 Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
 https://github.com/robotframework/SeleniumLibrary
 ```pip install --upgrade robotframework-seleniumlibrary```
 
-### 3.1 Pesquisar Keyworks na Library
+### 5.1 Pesquisar Keyworks na Library
 Acesse: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
 <img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
 
-## 4 Exemplo de implementção Open Browser
+## 6 Exemplo de implementção Open Browser
 ```robotframework
 *** Settings ***
 Documentation    Essa suíte testa o site da Amazon.com.br
@@ -118,7 +118,7 @@ Fechar o navegador
 	Close Browser
 ```
 
-## 5 Procurando elementos na DOM
+## 7 Procurando elementos na DOM
 <img width="2552" height="591" alt="image" src="https://github.com/user-attachments/assets/5a340ad6-de58-4756-9251-acdef3f038cb" />
 
 ```robotframework
@@ -162,18 +162,18 @@ Entrar no menu "Eletrônicos"
 Verificar se aparece a frase "Eletrônicos e Tecnologia"
 	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
 ```
-## 6 Dicas
-### 6.1 Acessar logs
+## 8 Dicas
+### 8.1 Acessar logs
 ```
 Log:     C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse\results\log.html
 ```
 
-### 6.2 Lidar com captcha
+### 8.2 Lidar com captcha
 Então faça alguma dessas sugestões abaixo:
 - Antes de rodar o teste na sua máquina pelo Robot, abra o navegador manualmente como "Anônimo", navegue até a página da Amazon.com e resolva o captcha manualmente, depois volte e tente rodar o teste normalmente.
 - Se não resolver, adicione a keyword Sleep   25s no código logo após a keyword Go To para poder dar tempo de você digitar o código manualmente. Daí é só aguardar o tempo do Sleep acabar que a execução do teste continuará normalmente.
 
-### 6.3 Maximizar o browser para aparecer
+### 8.3 Maximizar o browser para aparecer
 ```robotframework
 *** Keywords ***
 Abrir o navegador
@@ -181,7 +181,7 @@ Abrir o navegador
 	Maximize Browser Window
 ```
 
-### 6.4 Passar parametro
+### 8.4 Passar parametro
 ```robotframework
 *** Test Cases ***
 Caso de Teste 01 - Acesso ao menu "Eletrônicos"
@@ -192,7 +192,7 @@ Caso de Teste 01 - Acesso ao menu "Eletrônicos"
 Verificar se o titulo da página fica "${TITULO}"
 	Title Should Be    title=${TITULO}
 ```
-### 6.5 Screenshots
+### 8.5 Screenshots
 ```robotframework
 *** Keywords ***
 Abrir o navegador
@@ -203,7 +203,7 @@ Fechar o navegador
     Capture Page Screenshot
 ```
 
-### 6.6 Usar barra de pesquisa / Locator só com ID do componente
+### 8.6 Usar barra de pesquisa / Locator só com ID do componente
 ```robotframework
 *** Test Cases ***
 Caso de Teste 02 - Pesquisa de um Produto
