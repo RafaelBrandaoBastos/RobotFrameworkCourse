@@ -59,26 +59,6 @@ robot -d resultados amazon_tests.robot
 robot -v PRODUTO:Xbox amazon_tests.robot
 ```
 
-## 4 Tipos de variáveis
-```robotframework
-*** Variable ***
-# Simples
-${SIMPLES} Vamos ver os tipos de variáveis no robot!
-# Tipo Lista
-@{FRUTAS} morango banana maçã uva abacaxi
-# Tipo Dicionário
-&{PESSOA} nome=May Fernandes email=mayfernandes@exemplo.com.br idade=28
-```
-```robotframework
-*** Keywords ***
-Uma keyword qualquer 01
-# Simples
-Log ${SIMPLES}
-# Lista
-Log Essa tem que ser maça: ${FRUTAS[2]} e essa tem que ser morango: ${FRUTAS[0]} 
-# Dicionário
-Log Nome: ${PESSOA.nome} e email: ${PESSOA.email}
-```
 ## 5 Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
 https://github.com/robotframework/SeleniumLibrary
@@ -213,4 +193,56 @@ Caso de Teste 02 - Pesquisa de um Produto
 *** Keywords ***
 Digitar o nome de produto "${NOME-DO-PRODUTO}" no campo de pesquisa
 	Input Text    locator=twotabsearchtextbox    text=${NOME-DO-PRODUTO}
+```
+
+### 8.7 Tipos de variáveis
+```robotframework
+*** Variable ***
+# Simples
+${SIMPLES} Vamos ver os tipos de variáveis no robot!
+# Tipo Lista
+@{FRUTAS} morango banana maçã uva abacaxi
+# Tipo Dicionário
+&{PESSOA} nome=May Fernandes email=mayfernandes@exemplo.com.br idade=28
+```
+```robotframework
+*** Keywords ***
+Uma keyword qualquer 01
+# Simples
+Log ${SIMPLES}
+# Lista
+Log Essa tem que ser maça: ${FRUTAS[2]} e essa tem que ser morango: ${FRUTAS[0]} 
+# Dicionário
+Log Nome: ${PESSOA.nome} e email: ${PESSOA.email}
+```
+
+### 8.8 Passagem de argumentos
+```robotframework
+*** Variable ***
+&{PESSOA}    nome=May Fernandes    email=mayfernandes@exemplo.com.br    idade=12    sexo=feminino
+*** Test Cases ***
+Caso de teste de exemplo 01
+    Uma keyword qualquer
+```
+Envio os argumentos
+```robotframework
+*** Keywords ***
+Uma keyword qualquer
+    Uma subkeyword com argumentos    ${PESSOA.nome}    ${PESSOA.email}
+    ${MENSAGEM_ALERTA}    Uma subkeyword com retorno    ${PESSOA.nome}    ${PESSOA.idade}
+    Log    ${MENSAGEM_ALERTA}
+```
+recebe argumentos e loga
+```robotframework
+Uma subkeyword com argumentos
+    [Arguments]    ${NOME_USUARIO}    ${EMAIL_USUARIO}
+    Log    Nome Usuário: ${NOME_USUARIO}
+    Log    Email: ${EMAIL_USUARIO}
+```
+recebe argumentos, faz operação condicional, e retorna mensagem
+```robotframework
+Uma subkeyword com retorno
+    [Arguments]    ${NOME_USUARIO}    ${IDADE_USUARIO}
+    ${MENSAGEM}    Set Variable If    ${IDADE_USUARIO}<18    Não autorizado! O usuário ${NOME_USUARIO} é menor de idade!
+    [Return]    ${MENSAGEM}
 ```
