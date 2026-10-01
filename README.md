@@ -59,17 +59,17 @@ robot -d resultados amazon_tests.robot
 robot -v PRODUTO:Xbox amazon_tests.robot
 ```
 
-## 3 Instalação de Library
+## 5 Instalação de Library
 Todas as keywords da SeleniumLibrary que precisam interagir com um elemento em uma página da web recebem um argumento, geralmente chamado de *locator* (localizador), que especifica como encontrar o elemento.
 https://github.com/robotframework/SeleniumLibrary
 ```pip install --upgrade robotframework-seleniumlibrary```
 
-### 3.1 Pesquisar Keyworks na Library
+### 5.1 Pesquisar Keyworks na Library
 Acesse: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
 
 <img width="1725" height="527" alt="image" src="https://github.com/user-attachments/assets/9822bfaa-e586-4e57-891a-a1d708a02948" />
 
-## 4 Exemplo de implementção Open Browser
+## 6 Exemplo de implementção Open Browser
 ```robotframework
 *** Settings ***
 Documentation    Essa suíte testa o site da Amazon.com.br
@@ -98,7 +98,7 @@ Fechar o navegador
 	Close Browser
 ```
 
-## 5 Procurando elementos na DOM
+## 7 Procurando elementos na DOM
 <img width="2552" height="591" alt="image" src="https://github.com/user-attachments/assets/5a340ad6-de58-4756-9251-acdef3f038cb" />
 
 ```robotframework
@@ -142,18 +142,18 @@ Entrar no menu "Eletrônicos"
 Verificar se aparece a frase "Eletrônicos e Tecnologia"
 	Wait Until Page Contains    text=${HEADER ELETRONICOS_TEXT}
 ```
-## 6 Dicas
-### 6.1 Acessar logs
+## 8 Dicas
+### 8.1 Acessar logs
 ```
 Log:     C:\Users\BASR\OneDrive - Hexagon\Documentos\RobotFrameworkCourse\results\log.html
 ```
 
-### 6.2 Lidar com captcha
+### 8.2 Lidar com captcha
 Então faça alguma dessas sugestões abaixo:
 - Antes de rodar o teste na sua máquina pelo Robot, abra o navegador manualmente como "Anônimo", navegue até a página da Amazon.com e resolva o captcha manualmente, depois volte e tente rodar o teste normalmente.
 - Se não resolver, adicione a keyword Sleep   25s no código logo após a keyword Go To para poder dar tempo de você digitar o código manualmente. Daí é só aguardar o tempo do Sleep acabar que a execução do teste continuará normalmente.
 
-### 6.3 Maximizar o browser para aparecer
+### 8.3 Maximizar o browser para aparecer
 ```robotframework
 *** Keywords ***
 Abrir o navegador
@@ -161,7 +161,7 @@ Abrir o navegador
 	Maximize Browser Window
 ```
 
-### 6.4 Passar parametro
+### 8.4 Passar parametro
 ```robotframework
 *** Test Cases ***
 Caso de Teste 01 - Acesso ao menu "Eletrônicos"
@@ -172,7 +172,7 @@ Caso de Teste 01 - Acesso ao menu "Eletrônicos"
 Verificar se o titulo da página fica "${TITULO}"
 	Title Should Be    title=${TITULO}
 ```
-### 6.5 Screenshots
+### 8.5 Screenshots
 ```robotframework
 *** Keywords ***
 Abrir o navegador
@@ -183,7 +183,7 @@ Fechar o navegador
     Capture Page Screenshot
 ```
 
-### 6.6 Usar barra de pesquisa / Locator só com ID do componente
+### 8.6 Usar barra de pesquisa / Locator só com ID do componente
 ```robotframework
 *** Test Cases ***
 Caso de Teste 02 - Pesquisa de um Produto
@@ -193,4 +193,166 @@ Caso de Teste 02 - Pesquisa de um Produto
 *** Keywords ***
 Digitar o nome de produto "${NOME-DO-PRODUTO}" no campo de pesquisa
 	Input Text    locator=twotabsearchtextbox    text=${NOME-DO-PRODUTO}
+```
+
+### 8.7 Tipos de variáveis
+```robotframework
+*** Variable ***
+# Simples
+${SIMPLES} Vamos ver os tipos de variáveis no robot!
+# Tipo Lista
+@{FRUTAS} morango banana maçã uva abacaxi
+# Tipo Dicionário
+&{PESSOA} nome=May Fernandes email=mayfernandes@exemplo.com.br idade=28
+```
+```robotframework
+*** Keywords ***
+Uma keyword qualquer 01
+# Simples
+Log ${SIMPLES}
+# Lista
+Log Essa tem que ser maça: ${FRUTAS[2]} e essa tem que ser morango: ${FRUTAS[0]} 
+# Dicionário
+Log Nome: ${PESSOA.nome} e email: ${PESSOA.email}
+```
+
+### 8.8 Passagem de argumentos
+```robotframework
+*** Variable ***
+&{PESSOA}    nome=May Fernandes    email=mayfernandes@exemplo.com.br    idade=12    sexo=feminino
+*** Test Cases ***
+Caso de teste de exemplo 01
+    Uma keyword qualquer
+```
+Envio os argumentos
+```robotframework
+*** Keywords ***
+Uma keyword qualquer
+    Uma subkeyword com argumentos    ${PESSOA.nome}    ${PESSOA.email}
+    ${MENSAGEM_ALERTA}    Uma subkeyword com retorno    ${PESSOA.nome}    ${PESSOA.idade}
+    Log    ${MENSAGEM_ALERTA}
+```
+recebe argumentos e loga
+```robotframework
+Uma subkeyword com argumentos
+    [Arguments]    ${NOME_USUARIO}    ${EMAIL_USUARIO}
+    Log    Nome Usuário: ${NOME_USUARIO}
+    Log    Email: ${EMAIL_USUARIO}
+```
+recebe argumentos, faz operação condicional, e retorna mensagem
+```robotframework
+Uma subkeyword com retorno
+    [Arguments]    ${NOME_USUARIO}    ${IDADE_USUARIO}
+    ${MENSAGEM}    Set Variable If    ${IDADE_USUARIO}<18    Não autorizado! O usuário ${NOME_USUARIO} é menor de idade!
+    [Return]    ${MENSAGEM}
+```
+
+### 8.9 Logs
+```robotframework
+*** Variables ***
+ 
+@{FRUTAS} Maçã Banana Laranja Uva
+ 
+ 
+*** Test Cases ***
+ 
+Exemplo de tipos de log
+Demonstrar logs
+ 
+ 
+*** Keywords ***
+ 
+Demonstrar logs
+ 
+Log To Console ===== LOG NO CONSOLE =====
+Log To Console Posso logar na saída do console
+ 
+Log To Console \n===== LOG PADRÃO =====
+Log Este é um log informativo padrão.
+ 
+Log To Console \n===== LOG POR NÍVEL =====
+Log Informação detalhada para depuração. TRACE
+Log Informação de desenvolvimento. DEBUG
+Log Informação geral. INFO
+Log Aviso importante. WARN
+Log Erro encontrado. ERROR
+ 
+Log To Console \n===== LOG MANY =====
+Log Many @{FRUTAS}
+ 
+Log To Console \n===== LOG DE ITENS ESPECÍFICOS =====
+Log Primeira fruta: ${FRUTAS}[0]
+Log Segunda fruta: ${FRUTAS}[1]
+Log Frutas selecionadas: ${FRUTAS}[0] - ${FRUTAS}[1]
+```
+
+### 8.10 Loops
+```robotframework
+*** Variables ***
+
+@{FRUTAS}    Maçã    Banana    Laranja
+${CONTADOR}    0
+
+
+*** Test Cases ***
+
+Exemplos de loops
+    Loop FOR IN
+    Loop FOR IN RANGE
+    Loop FOR IN ENUMERATE
+    Loop WHILE
+    Loop REPEAT KEYWORD
+
+
+*** Keywords ***
+
+Loop FOR IN
+
+    Log To Console    ===== FOR IN =====
+
+    FOR    ${FRUTA}    IN    @{FRUTAS}
+        Log    Fruta atual: ${FRUTA}
+    END
+
+
+Loop FOR IN RANGE
+
+    Log To Console    \n===== FOR IN RANGE =====
+
+    FOR    ${NUMERO}    IN RANGE    5
+        Log    Número: ${NUMERO}
+    END
+
+
+Loop FOR IN ENUMERATE
+
+    Log To Console    \n===== FOR IN ENUMERATE =====
+
+    FOR    ${INDICE}    ${FRUTA}    IN ENUMERATE    @{FRUTAS}
+        Log    Índice: ${INDICE} | Fruta: ${FRUTA}
+    END
+
+
+Loop WHILE
+
+    Log To Console    \n===== WHILE =====
+
+    ${CONTADOR}=    Set Variable    0
+
+    WHILE    ${CONTADOR} < 5
+        Log    Contador: ${CONTADOR}
+        ${CONTADOR}=    Evaluate    ${CONTADOR} + 1
+    END
+
+
+Loop REPEAT KEYWORD
+
+    Log To Console    \n===== REPEAT KEYWORD =====
+
+    Repeat Keyword    3 times    Keyword De Exemplo
+
+
+Keyword De Exemplo
+    Log    Executando keyword...
+
 ```
